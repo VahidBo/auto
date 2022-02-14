@@ -19,7 +19,7 @@ export function TopMenu() {
           </Box>
           <Box
             component="nav"
-            sx={{ a: { textDecoration: "none", ml: 3, typography: "body1", color: "text.primary" } }}
+            sx={{ a: { textDecoration: "none", ml: 3, typography: "body2", color: "text.primary" } }}
           >
             {pages.map((page) => (
               <Link key={page.title} to={page.route}>
