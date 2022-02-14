@@ -1,13 +1,10 @@
 import { ThemeProvider } from "@mui/material/styles";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CarDetails } from "./car-details";
 import { Home } from "./home";
 import { Layout } from "./layout";
 import { NotFound } from "./not-found/NotFound";
-import { theme } from "./styles";
-
-const globalStyles = <GlobalStyles styles={{ body: { margin: 0 } }} />;
+import { globalStyles, theme } from "./styles";
 
 export default function App() {
   return (
