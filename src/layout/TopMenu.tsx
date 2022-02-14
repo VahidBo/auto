@@ -22,7 +22,9 @@ export function TopMenu() {
             sx={{ a: { textDecoration: "none", ml: 3, typography: "body1", color: "text.primary" } }}
           >
             {pages.map((page) => (
-              <Link to={page.route}>{page.title}</Link>
+              <Link key={page.title} to={page.route}>
+                {page.title}
+              </Link>
             ))}
           </Box>
         </Toolbar>
