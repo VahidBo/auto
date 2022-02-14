@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { Footer } from "./Footer";
 import { TopMenu } from "./TopMenu";
 
 export function Layout() {
@@ -6,6 +7,7 @@ export function Layout() {
     <>
       <TopMenu />
       <Outlet />
+      <Footer />
     </>
   );
 }
