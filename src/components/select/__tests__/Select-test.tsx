@@ -8,13 +8,27 @@ const mockOptions = [
   { label: "Opt 3", value: "opt3" },
 ];
 
-test("Render Select component with a velue", () => {
-  render(<Select options={mockOptions} value="default" />);
+test("Render Select component (Controlled)", () => {
+  const onChange = jest.fn();
+  render(<Select options={mockOptions} value="default" onChange={onChange} />);
   expect(screen.getByText("default")).toBeInTheDocument();
 });
 
-test("Open options and select onother option", () => {
+test("Open options and call onChange another one (Controlled)", () => {
+  const onChange = jest.fn();
+  render(<Select options={mockOptions} value="default" onChange={onChange} />);
+
+  fireEvent.mouseDown(screen.getByRole("button"));
+  expect(screen.getByRole("listbox")).toBeInTheDocument();
+
+  fireEvent.click(screen.getByText("Opt 2"));
+  expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  expect(onChange).toHaveBeenCalledTimes(1);
+});
+
+test("Open options and select another one (Uncontrolled)", () => {
   render(<Select options={mockOptions} />);
+  expect(screen.getByRole("button")).toBeInTheDocument();
 
   fireEvent.mouseDown(screen.getByRole("button"));
   expect(screen.getByRole("listbox")).toBeInTheDocument();

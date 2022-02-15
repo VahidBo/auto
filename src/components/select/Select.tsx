@@ -5,12 +5,12 @@ import MenuItem from "@mui/material/MenuItem";
 import MuiSelect, { SelectProps as MuiSelectProps } from "@mui/material/Select";
 import { SelectOptionType } from "./types";
 
-export interface SelectProps extends MuiSelectProps {
+export interface SelectProps<T> extends MuiSelectProps<T> {
   options: SelectOptionType[];
   sx?: SxProps;
 }
 
-export function Select({ options, sx = {}, ...selectProps }: SelectProps) {
+export function Select<T = unknown>({ options, sx = {}, ...selectProps }: SelectProps<T>) {
   return (
     <Box sx={{ minWidth: 240, ...sx }}>
       <FormControl fullWidth>
