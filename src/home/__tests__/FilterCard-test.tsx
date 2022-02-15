@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { SelectOptionType } from "../../shared";
+import { SelectOptionType } from "src/components";
 import { FilterCard } from "../FilterCard";
 
 const mockColorOptions: SelectOptionType[] = [

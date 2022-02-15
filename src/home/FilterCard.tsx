@@ -4,7 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useMemo } from "react";
-import { Select, SelectOptionType } from "../shared";
+import { Select, SelectOptionType } from "src/components";
 
 export interface FilterCardProps {
   colorOptions: SelectOptionType[];
