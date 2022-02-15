@@ -3,9 +3,10 @@ import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import MuiSelect, { SelectProps as MuiSelectProps } from "@mui/material/Select";
+import { SelectOptionType } from "./types";
 
 export interface SelectProps extends MuiSelectProps {
-  options: { label: string; value: string }[];
+  options: SelectOptionType[];
   sx?: SxProps;
 }
 

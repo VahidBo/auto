@@ -3,26 +3,34 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Select } from "../shared";
+import { useMemo } from "react";
+import { Select, SelectOptionType } from "../shared";
 
-const mockOptions = [
-  { label: "Opt 1", value: "opt1" },
-  { label: "Opt 2", value: "opt2" },
-  { label: "Opt 3", value: "opt3" },
-];
+export interface FilterCardProps {
+  colorOptions: SelectOptionType[];
+  manufacturerOptions: SelectOptionType[];
+}
 
-export function FilterCard() {
+export function FilterCard({ colorOptions, manufacturerOptions }: FilterCardProps) {
+  const preparedColorOptions = useMemo(
+    () => [{ label: "All car colors", value: "all" }, ...colorOptions],
+    [colorOptions],
+  );
+  const preparedManufacturerOptions = useMemo(
+    () => [{ label: "All manufacturers", value: "all" }, ...manufacturerOptions],
+    [manufacturerOptions],
+  );
   return (
     <Card>
       <CardContent>
         <Typography variant="caption" mb={1.5} component="label">
           Color
         </Typography>
-        <Select options={mockOptions} sx={{ mb: 1 }} />
+        <Select options={preparedColorOptions} value="all" sx={{ mb: 1 }} />
         <Typography variant="caption" mb={1.5} mt={2}>
           Manufacturer
         </Typography>
-        <Select options={mockOptions} />
+        <Select options={preparedManufacturerOptions} value="all" />
       </CardContent>
       <CardActions>
         <Button>Filter</Button>
