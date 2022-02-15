@@ -16,7 +16,7 @@ const mockManufacturereOptions: SelectOptionType[] = [
 
 export function Home() {
   return (
-    <Grid container spacing={3} p={3}>
+    <Grid container spacing={3} p={3} pb={0}>
       <Grid item xs="auto">
         <FilterCard colorOptions={mockColorOptions} manufacturerOptions={mockManufacturereOptions} />
       </Grid>

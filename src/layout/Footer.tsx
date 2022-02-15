@@ -7,8 +7,7 @@ export function Footer() {
     <Box
       component="footer"
       sx={{
-        position: "absolute",
-        bottom: 0,
+        bgcolor: "white",
         display: "flex",
         width: 1,
         height: 80,
