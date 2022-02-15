@@ -37,7 +37,8 @@
     "postinstall": "husky install",
     "prettier": "prettier --write . --ignore-unknown",
     "type-check": "tsc --pretty --noEmit",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "get-schema": "npx openapi-typescript https://auto1-mock-server.herokuapp.com/swagger.json --output src/api/schema.ts"
   },
   "eslintConfig": {
     "extends": [
