@@ -5,28 +5,25 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useCallback, useMemo, useState } from "react";
-import { Select, SelectOptionType } from "src/components";
+import { Select } from "src/components";
+import { useColorsList } from "./colorsList.query";
+import { useManufacturersList } from "./manufacturersList.query";
 import { FiltersStore, useFiltersStore } from "./useFiltersStore";
+import { prepareColorOptions, prepareManufacturerOptions } from "./utils";
 
 const filtersSelector = (s: FiltersStore) => s.setFilters;
 
-export interface FilterCardProps {
-  colorOptions: SelectOptionType[];
-  manufacturerOptions: SelectOptionType[];
-}
-
-export function FilterCard({ colorOptions, manufacturerOptions }: FilterCardProps) {
+export function FilterCard() {
   const setFilters = useFiltersStore(filtersSelector);
   const [color, setColor] = useState("all");
   const [manufacturer, setManufacturer] = useState("all");
+  const { data: colorsData } = useColorsList();
+  const { data: manufacturersData } = useManufacturersList();
 
-  const preparedColorOptions = useMemo(
-    () => [{ label: "All car colors", value: "all" }, ...colorOptions],
-    [colorOptions],
-  );
+  const preparedColorOptions = useMemo(() => prepareColorOptions(colorsData?.colors), [colorsData?.colors]);
   const preparedManufacturerOptions = useMemo(
-    () => [{ label: "All manufacturers", value: "all" }, ...manufacturerOptions],
-    [manufacturerOptions],
+    () => prepareManufacturerOptions(manufacturersData?.manufacturers),
+    [manufacturersData?.manufacturers],
   );
 
   const onChangeColor = useCallback((event: SelectChangeEvent<string>) => {
