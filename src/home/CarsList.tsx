@@ -29,7 +29,7 @@ export function CarsList() {
       ) : (
         <>
           {(data?.cars || []).map((car: any) => (
-            <CarCard key={"some"} />
+            <CarCard key={"some"} carDetails={car} />
           ))}
         </>
       )}

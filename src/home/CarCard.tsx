@@ -1,25 +1,35 @@
 import { CardContent, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
-import MuiLink from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/system/Box";
 import { Link } from "react-router-dom";
+import { components } from "src/api";
+import { capitalizeFirstLetter } from "src/helpers";
 
-export function CarCard() {
+export interface CarCardProps {
+  carDetails: components["schemas"]["Car"];
+}
+
+export function CarCard({ carDetails }: CarCardProps) {
+  const { manufacturerName, modelName, stockNumber, mileage, fuelType, color, pictureUrl } = carDetails;
   return (
     <Card>
       <CardContent sx={{ p: 1, "&:last-child": { pb: 1 } }}>
-        <Grid container rowSpacing={3}>
+        <Grid container spacing={3}>
           <Grid item xs="auto">
-            <img src="#" alt="car thumbnail" />
+            <Box sx={{ img: { height: 74 } }}>
+              <img src={pictureUrl} alt="car thumbnail" />
+            </Box>
           </Grid>
           <Grid item xs>
-            <Typography variant="h6">Car Name</Typography>
-            <Typography variant="caption">Stock # 61184 - 152.263 KM - Petrol - Yellow</Typography>
-            <Box mt={0.5}>
-              <Link to="/">
-                <MuiLink>View details</MuiLink>
-              </Link>
+            <Typography variant="h6">{`${manufacturerName} ${modelName}`}</Typography>
+            <Typography variant="caption">
+              {`Stock # ${stockNumber} - `}
+              {`${mileage?.number} ${mileage?.unit?.toUpperCase()} - `}
+              {`${fuelType} - ${capitalizeFirstLetter(color || "")}`}
+            </Typography>
+            <Box sx={{ mt: 0.5, a: { typography: "caption" } }}>
+              <Link to={`car-details/${stockNumber}`}>View details</Link>
             </Box>
           </Grid>
         </Grid>
