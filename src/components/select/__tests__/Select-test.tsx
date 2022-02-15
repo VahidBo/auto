@@ -27,7 +27,7 @@ test("Open options and call onChange another one (Controlled)", () => {
 });
 
 test("Open options and select another one (Uncontrolled)", () => {
-  render(<Select options={mockOptions} />);
+  render(<Select options={mockOptions} defaultValue="default" />);
   expect(screen.getByRole("button")).toBeInTheDocument();
 
   fireEvent.mouseDown(screen.getByRole("button"));
