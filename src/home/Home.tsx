@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import { SelectOptionType } from "src/components";
+import { CarsList } from "./CarsList";
 import { FilterCard } from "./FilterCard";
 
 const mockColorOptions: SelectOptionType[] = [
@@ -20,7 +21,7 @@ export function Home() {
         <FilterCard colorOptions={mockColorOptions} manufacturerOptions={mockManufacturereOptions} />
       </Grid>
       <Grid item xs>
-        Car list will place here.
+        <CarsList />
       </Grid>
     </Grid>
   );

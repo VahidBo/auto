@@ -5,8 +5,10 @@ import {
   MuiCard,
   MuiCardActions,
   MuiCardContent,
+  MuiLink,
   MuiOutlinedInput,
   MuiSelect,
+  MuiTypography,
 } from "./custom-styles";
 import { palette, typography } from "./systemOverrides";
 
@@ -21,5 +23,7 @@ export const theme = createTheme({
     MuiButton,
     MuiSelect,
     MuiOutlinedInput,
+    MuiTypography,
+    MuiLink,
   },
 });
