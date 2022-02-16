@@ -3,12 +3,17 @@ import { removeFromArray } from "src/helpers";
 
 export const FAVOURITE_CARS_STORAGE_KEY = "FAVOURITE_CARS_STORAGE_KEY";
 
+const getFavouriteCalors = (): number[] => {
+  const cars = localStorage.getItem(FAVOURITE_CARS_STORAGE_KEY);
+  return JSON.parse(cars || "[]");
+};
+
 export function useFavouriteCars(): {
   favouritCars: number[];
   addToFavouriteCars: (stockNumber: number) => void;
   removeFromFavouriteCars: (stockNumber: number) => void;
 } {
-  const [favouritCars, setFavouriteCars] = useState<number[]>([]);
+  const [favouritCars, setFavouriteCars] = useState<number[]>(getFavouriteCalors);
 
   const addToFavouriteCars = useCallback((stockNumber: number) => {
     const currentFavouriteCars = localStorage.getItem(FAVOURITE_CARS_STORAGE_KEY);

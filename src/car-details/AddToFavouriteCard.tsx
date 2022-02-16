@@ -4,14 +4,30 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useCallback } from "react";
+import { useFavouriteCars } from "src/hooks";
 
 export const FAVOURITE_CARD_TEXT =
   "If you like this car, click the button and save it in your collection of favourite items.";
 
-export function AddToFavouriteCard() {
+export interface AddToFavouriteCardProps {
+  stockNumber?: number;
+}
+
+export function AddToFavouriteCard({ stockNumber }: AddToFavouriteCardProps) {
+  const { favouritCars, addToFavouriteCars, removeFromFavouriteCars } = useFavouriteCars();
+  console.log("---", favouritCars);
+  const isFavourite = favouritCars.includes(stockNumber || -1);
   const addOrRemoveFromFavourites = useCallback(() => {
-    // TODO: Implement the functionality
-  }, []);
+    if (stockNumber) {
+      if (isFavourite) {
+        removeFromFavouriteCars(stockNumber);
+      } else {
+        addToFavouriteCars(stockNumber);
+      }
+    }
+  }, [addToFavouriteCars, isFavourite, removeFromFavouriteCars, stockNumber]);
+
+  const buttonText = isFavourite ? "Remove" : "Save";
 
   return (
     <Card sx={{ width: 300 }}>
@@ -21,7 +37,7 @@ export function AddToFavouriteCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={addOrRemoveFromFavourites}>Save</Button>
+        <Button onClick={addOrRemoveFromFavourites}>{buttonText}</Button>
       </CardActions>
     </Card>
   );
