@@ -59,7 +59,9 @@ export function CarsList() {
     <>
       <Typography variant="h6">Available cars</Typography>
       <Typography variant="body1" mb={3}>
-        {data?.totalCarsCount ? `Showing 10 of ${Math.min(data.totalCarsCount, 10 * PAGES_COUNT_LIMIT)} results` : "-"}
+        {data?.totalCarsCount
+          ? `Showing ${data.cars?.length} of ${Math.min(data.totalCarsCount, 10 * PAGES_COUNT_LIMIT)} results`
+          : "-"}
       </Typography>
       {status === "loading" ? (
         <div>Loading...</div>
