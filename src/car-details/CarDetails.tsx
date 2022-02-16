@@ -1,9 +1,10 @@
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { grey } from "@mui/material/colors";
-import { Box } from "@mui/system";
+import Box from "@mui/system/Box";
 import { useParams } from "react-router";
 import { AddToFavouriteCard } from "./AddToFavouriteCard";
 import { useCarDetails } from "./carDetails.query";
+import { CarDetailsLoading } from "./CarDetailsLoading";
 import { CarInfoSection } from "./CarInfoSection";
 
 export function CarDetails() {
@@ -11,7 +12,7 @@ export function CarDetails() {
   const { data, isLoading, error } = useCarDetails({ stockNumber: +(stockNumber || -1) });
 
   if (isLoading) {
-    return <div>"Loading..."</div>;
+    return <CarDetailsLoading />;
   }
   if (error || !data || !data.car) {
     console.log(error);
