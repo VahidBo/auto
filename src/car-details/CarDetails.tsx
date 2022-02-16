@@ -6,17 +6,17 @@ import { AddToFavouriteCard } from "./AddToFavouriteCard";
 import { useCarDetails } from "./carDetails.query";
 import { CarDetailsLoading } from "./CarDetailsLoading";
 import { CarInfoSection } from "./CarInfoSection";
+import { CarDetailsError } from "./CarDetailsError";
 
 export function CarDetails() {
   const { stockNumber } = useParams();
-  const { data, isLoading, error } = useCarDetails({ stockNumber: +(stockNumber || -1) });
+  const { data, isLoading, error, refetch } = useCarDetails({ stockNumber: +(stockNumber || -1) });
 
   if (isLoading) {
     return <CarDetailsLoading />;
   }
   if (error || !data || !data.car) {
-    console.log(error);
-    return <div>"error"</div>;
+    return <CarDetailsError refetch={refetch} />;
   }
   const { car } = data;
   return (
