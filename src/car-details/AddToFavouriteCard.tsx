@@ -15,8 +15,8 @@ export interface AddToFavouriteCardProps {
 
 export function AddToFavouriteCard({ stockNumber }: AddToFavouriteCardProps) {
   const { favouritCars, addToFavouriteCars, removeFromFavouriteCars } = useFavouriteCars();
-  console.log("---", favouritCars);
   const isFavourite = favouritCars.includes(stockNumber || -1);
+
   const addOrRemoveFromFavourites = useCallback(() => {
     if (stockNumber) {
       if (isFavourite) {

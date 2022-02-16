@@ -69,8 +69,8 @@ export function CarsList() {
       ) : (
         <Grid container spacing={1}>
           {(data?.cars || []).map((car: any) => (
-            <Grid item xs={12}>
-              <CarCard key={car.stockNumber} carDetails={car} />
+            <Grid item xs={12} key={car.stockNumber}>
+              <CarCard carDetails={car} />
             </Grid>
           ))}
         </Grid>
