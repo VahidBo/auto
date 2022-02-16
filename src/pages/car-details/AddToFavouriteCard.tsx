@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -30,15 +31,17 @@ export function AddToFavouriteCard({ stockNumber }: AddToFavouriteCardProps) {
   const buttonText = isFavourite ? "Remove" : "Save";
 
   return (
-    <Card sx={{ width: 300 }}>
-      <CardContent sx={{ pb: 1 }}>
-        <Typography variant="body2" component="label">
-          {FAVOURITE_CARD_TEXT}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button onClick={addOrRemoveFromFavourites}>{buttonText}</Button>
-      </CardActions>
-    </Card>
+    <Box px={1.5}>
+      <Card sx={{ width: { xs: 1, sm: 300 } }}>
+        <CardContent sx={{ pb: 1 }}>
+          <Typography variant="body2" component="label">
+            {FAVOURITE_CARD_TEXT}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button onClick={addOrRemoveFromFavourites}>{buttonText}</Button>
+        </CardActions>
+      </Card>
+    </Box>
   );
 }

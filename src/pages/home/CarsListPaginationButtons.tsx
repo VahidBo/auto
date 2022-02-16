@@ -20,7 +20,7 @@ export function CarsListPaginationButtons({
   onPreviousPageButtonPressed,
 }: CarsListPaginationButtonsProps) {
   return (
-    <Box sx={{ p: 3, display: "flex", justifyContent: "center", "& button": { mx: 1.5 } }}>
+    <Box sx={{ p: 3, px: { xs: 1, md: 3 }, display: "flex", justifyContent: "center", "& button": { mx: 1.5 } }}>
       <MuiLink component="button" onClick={onFirstPageButtonPressed}>
         First
       </MuiLink>

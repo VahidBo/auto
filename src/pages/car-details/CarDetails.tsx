@@ -34,7 +34,7 @@ export function CarDetails() {
         <Grid item xs>
           <CarInfoSection carDetails={car} />
         </Grid>
-        <Grid item xs="auto">
+        <Grid item xs={12} sm="auto">
           <AddToFavouriteCard stockNumber={car.stockNumber} />
         </Grid>
       </Grid>
