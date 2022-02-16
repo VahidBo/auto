@@ -23,7 +23,7 @@ test("Render CarCard", () => {
   } ${mileage?.unit?.toUpperCase()} - ${fuelType} - ${capitalizeFirstLetter(color || "")}`;
 
   render(<CarCard carDetails={mockCarDetails} />, { wrapper: MemoryRouter });
-  expect(screen.getByAltText("car thumbnail")).toBeInTheDocument();
+  expect(screen.getByAltText(`${manufacturerName} ${modelName}`)).toBeInTheDocument();
   expect(screen.getByText(`${manufacturerName} ${modelName}`)).toBeInTheDocument();
   expect(screen.getByText(carInfo)).toBeInTheDocument();
   expect(screen.getByText("View details")).toBeInTheDocument();

@@ -17,8 +17,8 @@ export function CarCard({ carDetails }: CarCardProps) {
       <CardContent sx={{ p: 1, "&:last-child": { pb: 1 } }}>
         <Grid container spacing={3}>
           <Grid item xs="auto">
-            <Box sx={{ img: { height: 74 } }}>
-              <img src={pictureUrl} alt="car thumbnail" />
+            <Box sx={{ height: 70, width: 83, img: { height: 70, width: 83 } }}>
+              <img src={pictureUrl} alt={`${manufacturerName} ${modelName}`} />
             </Box>
           </Grid>
           <Grid item xs>

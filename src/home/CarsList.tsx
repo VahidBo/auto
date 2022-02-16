@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { CarCard } from "./CarCard";
 import { getCarsList, useCarsList } from "./carsList.query";
 import { CarsListPaginationButtons } from "./CarsListPaginationButtons";
+import { CarsListSkeleton } from "./CarsListSkeleton";
 import { generateSearchParams } from "./utils";
 
 const PAGES_COUNT_LIMIT = 10;
@@ -63,8 +64,8 @@ export function CarsList() {
           ? `Showing ${data.cars?.length} of ${Math.min(data.totalCarsCount, 10 * PAGES_COUNT_LIMIT)} results`
           : "-"}
       </Typography>
-      {status === "loading" ? (
-        <div>Loading...</div>
+      {status === "loading" || isFetching ? (
+        <CarsListSkeleton />
       ) : (
         <Grid container spacing={1}>
           {(data?.cars || []).map((car: any) => (
@@ -82,7 +83,6 @@ export function CarsList() {
         onNextPageButtonPressed={onNextPageButtonPressed}
         onPreviousPageButtonPressed={onPreviousPageButtonPressed}
       />
-      {isFetching ? <span> Loading...</span> : null}
     </>
   );
 }
