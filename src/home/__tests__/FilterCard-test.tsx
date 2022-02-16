@@ -1,21 +1,16 @@
-import { render, screen } from "@testing-library/react";
-import { SelectOptionType } from "src/components";
+import { screen } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { renderWithRouter } from "src/helpers";
 import { FilterCard } from "../FilterCard";
 
-const mockColorOptions: SelectOptionType[] = [
-  { label: "Red", value: "red" },
-  { label: "Blue", value: "blue" },
-  { label: "White", value: "white" },
-];
+const queryClient = new QueryClient();
 
-const mockManufacturereOptions: SelectOptionType[] = [
-  { label: "Benz", value: "benz" },
-  { label: "BMW", value: "bmw" },
-];
-
-// TODO: Complete this test
 test("Render Filter Card", () => {
-  render(<FilterCard colorOptions={mockColorOptions} manufacturerOptions={mockManufacturereOptions} />);
+  renderWithRouter(
+    <QueryClientProvider client={queryClient}>
+      <FilterCard />
+    </QueryClientProvider>,
+  );
   expect(screen.getByText("Color")).toBeInTheDocument();
   expect(screen.getByText("All car colors")).toBeInTheDocument();
   expect(screen.getByText("Manufacturer")).toBeInTheDocument();

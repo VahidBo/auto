@@ -1,6 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import { capitalizeFirstLetter } from "src/helpers";
+import { screen } from "@testing-library/react";
+import { capitalizeFirstLetter, renderWithRouter } from "src/helpers";
 import { CarCard, CarCardProps } from "../CarCard";
 
 const mockCarDetails: CarCardProps["carDetails"] = {
@@ -22,7 +21,7 @@ test("Render CarCard", () => {
     mileage?.number
   } ${mileage?.unit?.toUpperCase()} - ${fuelType} - ${capitalizeFirstLetter(color || "")}`;
 
-  render(<CarCard carDetails={mockCarDetails} />, { wrapper: MemoryRouter });
+  renderWithRouter(<CarCard carDetails={mockCarDetails} />);
   expect(screen.getByAltText(`${manufacturerName} ${modelName}`)).toBeInTheDocument();
   expect(screen.getByText(`${manufacturerName} ${modelName}`)).toBeInTheDocument();
   expect(screen.getByText(carInfo)).toBeInTheDocument();
