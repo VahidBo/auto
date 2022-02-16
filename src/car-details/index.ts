@@ -1,1 +1,0 @@
-export { CarDetails } from "./CarDetails";
