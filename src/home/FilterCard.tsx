@@ -5,18 +5,18 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useCallback, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Select } from "src/components";
 import { useColorsList } from "./colorsList.query";
 import { useManufacturersList } from "./manufacturersList.query";
-import { FiltersStore, useFiltersStore } from "./useFiltersStore";
-import { prepareColorOptions, prepareManufacturerOptions } from "./utils";
-
-const filtersSelector = (s: FiltersStore) => s.setFilters;
+import { generateSearchParams, prepareColorOptions, prepareManufacturerOptions } from "./utils";
 
 export function FilterCard() {
-  const setFilters = useFiltersStore(filtersSelector);
-  const [color, setColor] = useState("all");
-  const [manufacturer, setManufacturer] = useState("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [color, setColor] = useState(() => searchParams.get("color") || "all");
+  const [manufacturer, setManufacturer] = useState(() => searchParams.get("manufacturer") || "all");
+
   const { data: colorsData } = useColorsList();
   const { data: manufacturersData } = useManufacturersList();
 
@@ -33,8 +33,11 @@ export function FilterCard() {
     setManufacturer(event.target.value);
   }, []);
   const onApplyFilters = useCallback(() => {
-    setFilters({ color, manufacturer });
-  }, [color, manufacturer, setFilters]);
+    const page = searchParams.get("page");
+    const newSearchParams = generateSearchParams(page, color, manufacturer);
+    setSearchParams(newSearchParams);
+  }, [color, manufacturer, searchParams, setSearchParams]);
+
   return (
     <Card>
       <CardContent>
