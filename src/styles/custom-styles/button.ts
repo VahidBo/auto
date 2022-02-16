@@ -9,7 +9,7 @@ export const MuiButton: Components["MuiButton"] = {
       color: "white",
       boxShadow: "none",
       justifyContent: "center",
-      borderRadius: 4,
+      borderRadius: 2,
       "&:hover": {
         backgroundColor: palette.secondary.main,
         boxShadow: "none",

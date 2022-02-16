@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { Box } from "@mui/system";
 import { useParams } from "react-router";
+import { AddToFavouriteCard } from "./AddToFavouriteCard";
 import { useCarDetails } from "./carDetails.query";
 import { CarInfoSection } from "./CarInfoSection";
 
@@ -33,7 +34,7 @@ export function CarDetails() {
           <CarInfoSection carDetails={car} />
         </Grid>
         <Grid item xs="auto">
-          Favourite box will place here
+          <AddToFavouriteCard />
         </Grid>
       </Grid>
     </Box>
