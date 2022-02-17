@@ -24,7 +24,7 @@ export function prepareManufacturerOptions(manufacturers: Manufacturer[] | undef
   return [{ label: "All manufacturers", value: "all" }, ...manufacturerOptions];
 }
 
-export function generateSearchParams(page?: string | null, color?: string | null, manufacturer?: string | null) {
+export function generateSearchParams(page: string | null, color: string | null, manufacturer: string | null) {
   return {
     ...(page ? { page } : {}),
     ...(color && color !== "all" ? { color } : {}),
