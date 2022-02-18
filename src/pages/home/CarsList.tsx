@@ -28,7 +28,9 @@ export function CarsList() {
   useEffect(() => {
     if (hasMorePage) {
       const params = { page: page + 1, color, manufacturer };
-      queryClient.prefetchQuery(["carsList", page + 1, color, manufacturer], () => getCarsList(params));
+      queryClient.prefetchQuery(["carsList", page + 1, color, manufacturer], () => getCarsList(params), {
+        staleTime: 60 * 1000,
+      });
     }
   }, [color, hasMorePage, manufacturer, page, queryClient]);
 

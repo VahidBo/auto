@@ -8,5 +8,5 @@ export function getColorsList() {
 }
 
 export function useColorsList() {
-  return useQuery("colorsList", getColorsList);
+  return useQuery("colorsList", getColorsList, { staleTime: 5 * 60 * 1000 });
 }

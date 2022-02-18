@@ -9,5 +9,5 @@ export function getManufacturersList() {
 }
 
 export function useManufacturersList() {
-  return useQuery("manufacturersList", () => getManufacturersList());
+  return useQuery("manufacturersList", getManufacturersList, { staleTime: 5 * 60 * 1000 });
 }
