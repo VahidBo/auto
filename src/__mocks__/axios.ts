@@ -1,3 +1,5 @@
+import { AxiosRequestConfig } from "axios";
+
 const mockColors = {
   data: {
     colors: ["white", "red", "black"],
@@ -19,40 +21,35 @@ const mockManufacturer = {
   },
 };
 
-const mockCars = {
+const mockCar = {
   data: {
-    cars: [
-      {
-        stockNumber: 41400,
-        manufacturerName: "Fiat",
-        modelName: "Marea",
-        mileage: {
-          number: 100141,
-          unit: "km",
-        },
-        fuelType: "Diesel",
-        color: "white",
-        pictureUrl: "http://localhost:3001/car.svg",
+    car: {
+      stockNumber: 41400,
+      manufacturerName: "Fiat",
+      modelName: "Marea",
+      mileage: {
+        number: 100141,
+        unit: "km",
       },
-      {
-        stockNumber: 41401,
-        manufacturerName: "Chrysler",
-        modelName: "300 C",
-        mileage: {
-          number: 2342,
-          unit: "km",
-        },
-        fuelType: "Diesel",
-        color: "red",
-        pictureUrl: "http://localhost:3001/car.svg",
-      },
-    ],
-    totalPageCount: 1,
-    totalCarsCount: 2,
+      fuelType: "Diesel",
+      color: "white",
+      pictureUrl: "http://localhost:3001/car.svg",
+    },
   },
 };
 
-const get = (url: string) => {
+function generateMockCars(perPage = 10, totalPageCount = 20, totalCarsCount = 200) {
+  const cars = [];
+  const { car } = mockCar.data;
+  for (let i = 0; i < perPage; i += 1) {
+    cars.push({ ...car, stockNumber: car.stockNumber + i });
+  }
+  return {
+    data: { cars, totalPageCount, totalCarsCount },
+  };
+}
+
+const get = (url: string, config: AxiosRequestConfig) => {
   if (url === "/api/colors") {
     return Promise.resolve(mockColors);
   }
@@ -60,7 +57,7 @@ const get = (url: string) => {
     return Promise.resolve(mockManufacturer);
   }
   if (url === "/api/cars") {
-    return Promise.resolve(mockCars);
+    return Promise.resolve(generateMockCars());
   }
   return Promise.reject(new Error("Not found"));
 };
