@@ -27,7 +27,10 @@ export function CarsListPaginationButtons({
       <MuiLink component="button" onClick={onPreviousPageButtonPressed}>
         Previous
       </MuiLink>
-      <Typography variant="caption" mx={1.5}>{`Page ${currentPage} of ${pagesCount}`}</Typography>
+      <Typography variant="caption" mx={1.5}>
+        {pagesCount === 0 ? "Page - of -" : `Page ${currentPage} of ${pagesCount}`}
+      </Typography>
+
       <MuiLink component="button" onClick={onNextPageButtonPressed}>
         Next
       </MuiLink>

@@ -13,7 +13,7 @@ export interface CarCardProps {
 export function CarCard({ carDetails }: CarCardProps) {
   const { manufacturerName, modelName, stockNumber, mileage, fuelType, color, pictureUrl } = carDetails;
   return (
-    <Card>
+    <Card data-testid="car-card">
       <CardContent sx={{ p: 1, "&:last-child": { pb: 1 } }}>
         <Grid container spacing={3}>
           <Grid item xs="auto">

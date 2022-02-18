@@ -10,7 +10,7 @@ export function CarsListSkeleton() {
     <Grid container spacing={1}>
       {ARRAY_WITH_TEN_ITEMS.map((item) => (
         <Grid key={item} item xs={12}>
-          <Card>
+          <Card data-testid="car-card-skeleton">
             <CardContent sx={{ p: 1, "&:last-child": { pb: 1 } }}>
               <Grid container spacing={3}>
                 <Grid item xs="auto">
