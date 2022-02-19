@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Select } from "../Select";
 
 const mockOptions = [
@@ -18,10 +19,10 @@ test("Open options and call onChange another one (Controlled)", () => {
   const onChange = jest.fn();
   render(<Select options={mockOptions} value="default" onChange={onChange} />);
 
-  fireEvent.mouseDown(screen.getByRole("button"));
+  userEvent.click(screen.getByRole("button"));
   expect(screen.getByRole("listbox")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Opt 2"));
+  userEvent.click(screen.getByText("Opt 2"));
   expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   expect(onChange).toHaveBeenCalledTimes(1);
 });
@@ -30,10 +31,10 @@ test("Open options and select another one (Uncontrolled)", () => {
   render(<Select options={mockOptions} defaultValue="default" />);
   expect(screen.getByRole("button")).toBeInTheDocument();
 
-  fireEvent.mouseDown(screen.getByRole("button"));
+  userEvent.click(screen.getByRole("button"));
   expect(screen.getByRole("listbox")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Opt 2"));
+  userEvent.click(screen.getByText("Opt 2"));
   expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   expect(screen.getByRole("button")).toHaveTextContent("Opt 2");
 });

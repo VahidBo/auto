@@ -1,4 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { render } from "src/helpers";
 import { CarsList } from "../CarsList";
 
@@ -31,13 +32,13 @@ test("CarsList: Click on Next and Previous buttons", async () => {
   expect(await screen.findByText("Page 1 of 10")).toBeInTheDocument();
   expect(screen.getByText("Next")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Next"));
+  userEvent.click(screen.getByText("Next"));
 
   expect(await screen.findByText("Page 2 of 10")).toBeInTheDocument();
   expect(await screen.findAllByTestId("car-card")).toHaveLength(10);
   expect(screen.getByText("Previous")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Previous"));
+  userEvent.click(screen.getByText("Previous"));
 
   expect(await screen.findByText("Page 1 of 10")).toBeInTheDocument();
   expect(await screen.findAllByTestId("car-card")).toHaveLength(10);
@@ -48,13 +49,13 @@ test("CarsList: Click on Last and First buttons", async () => {
   expect(await screen.findByText("Page 1 of 10")).toBeInTheDocument();
   expect(screen.getByText("Last")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Last"));
+  userEvent.click(screen.getByText("Last"));
 
   expect(await screen.findByText("Page 10 of 10")).toBeInTheDocument();
   expect(await screen.findAllByTestId("car-card")).toHaveLength(10);
   expect(screen.getByText("First")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("First"));
+  userEvent.click(screen.getByText("First"));
 
   expect(await screen.findByText("Page 1 of 10")).toBeInTheDocument();
   expect(await screen.findAllByTestId("car-card")).toHaveLength(10);
@@ -65,7 +66,7 @@ test("CarsList: Prevous button should not work", async () => {
   expect(await screen.findByText("Page 1 of 10")).toBeInTheDocument();
   expect(screen.getByText("Previous")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Previous"));
+  userEvent.click(screen.getByText("Previous"));
 
   expect(await screen.findByText("Page 1 of 10")).toBeInTheDocument();
 });
@@ -74,11 +75,11 @@ test("CarsList: Next button should not work", async () => {
   render(<CarsList />);
   expect(await screen.findByText("Page 1 of 10")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Last"));
+  userEvent.click(screen.getByText("Last"));
   expect(await screen.findByText("Page 10 of 10")).toBeInTheDocument();
 
   expect(screen.getByText("Next")).toBeInTheDocument();
-  fireEvent.click(screen.getByText("Next"));
+  userEvent.click(screen.getByText("Next"));
 
   expect(await screen.findByText("Page 10 of 10")).toBeInTheDocument();
 });

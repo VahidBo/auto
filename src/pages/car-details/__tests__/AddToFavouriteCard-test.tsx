@@ -1,4 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { renderWithRouter } from "src/helpers";
 import { AddToFavouriteCard, FAVOURITE_CARD_TEXT } from "../AddToFavouriteCard";
 
@@ -7,7 +8,7 @@ test("Render AddToFavouriteCard and click save button", () => {
   expect(screen.getByText(FAVOURITE_CARD_TEXT)).toBeInTheDocument();
   expect(screen.getByText("Save")).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText("Save"));
+  userEvent.click(screen.getByText("Save"));
   expect(screen.getByText("Save")).toBeInTheDocument();
   // TODO: Add expectations after implemnt functionality
 });

@@ -1,4 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { renderWithRouter } from "src/helpers";
 import { CarDetailsError } from "../CarDetailsError";
 
@@ -15,6 +16,6 @@ test("CarDetailsError - click on retry button", () => {
   const retryHandler = jest.fn();
   renderWithRouter(<CarDetailsError refetch={retryHandler} />);
 
-  fireEvent.click(screen.getByText("Retry"));
+  userEvent.click(screen.getByText("Retry"));
   expect(retryHandler).toBeCalledTimes(1);
 });
