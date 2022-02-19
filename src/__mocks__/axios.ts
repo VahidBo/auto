@@ -1,48 +1,13 @@
 import { AxiosRequestConfig } from "axios";
-
-const mockColors = {
-  data: {
-    colors: ["white", "red", "black"],
-  },
-};
-
-const mockManufacturer = {
-  data: {
-    manufacturers: [
-      {
-        name: "Fiat",
-        models: [
-          {
-            name: "Marea",
-          },
-        ],
-      },
-    ],
-  },
-};
-
-const mockCar = {
-  data: {
-    car: {
-      stockNumber: 41400,
-      manufacturerName: "Fiat",
-      modelName: "Marea",
-      mileage: {
-        number: 100141,
-        unit: "km",
-      },
-      fuelType: "Diesel",
-      color: "white",
-      pictureUrl: "http://localhost:3001/car.svg",
-    },
-  },
-};
+import { mockCar, mockColors, mockManufacturer } from "../__fixtures__/api-mock-responses";
 
 function generateMockCars(perPage = 10, totalPageCount = 20, totalCarsCount = 200) {
   const cars = [];
-  const { car } = mockCar.data;
-  for (let i = 0; i < perPage; i += 1) {
-    cars.push({ ...car, stockNumber: car.stockNumber + i });
+  if (mockCar.data?.car) {
+    const { car } = mockCar.data;
+    for (let i = 0; i < perPage; i += 1) {
+      cars.push({ ...car, stockNumber: (car.stockNumber || 0) + i });
+    }
   }
   return {
     data: { cars, totalPageCount, totalCarsCount },

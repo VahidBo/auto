@@ -1,17 +1,10 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { renderWithRouter } from "src/helpers";
+import { render } from "src/helpers";
 import { FilterCard } from "../FilterCard";
 
-const queryClient = new QueryClient();
-
 test("Render FilterCard", () => {
-  renderWithRouter(
-    <QueryClientProvider client={queryClient}>
-      <FilterCard />
-    </QueryClientProvider>,
-  );
+  render(<FilterCard />);
   expect(screen.getByText("Color")).toBeInTheDocument();
   expect(screen.getByText("All car colors")).toBeInTheDocument();
   expect(screen.getByText("Manufacturer")).toBeInTheDocument();
@@ -20,11 +13,7 @@ test("Render FilterCard", () => {
 });
 
 test("FilterCard: Open the color options and choose one", async () => {
-  renderWithRouter(
-    <QueryClientProvider client={queryClient}>
-      <FilterCard />
-    </QueryClientProvider>,
-  );
+  render(<FilterCard />);
   expect(screen.getByText("All car colors")).toBeInTheDocument();
 
   userEvent.click(screen.getByText("All car colors"));
