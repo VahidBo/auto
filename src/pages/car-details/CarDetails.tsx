@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { grey } from "@mui/material/colors";
 import Box from "@mui/system/Box";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { AddToFavouriteCard } from "./AddToFavouriteCard";
 import { useCarDetails } from "./carDetails.query";
 import { CarDetailsLoading } from "./CarDetailsLoading";

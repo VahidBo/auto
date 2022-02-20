@@ -24,6 +24,9 @@ const get = (url: string, config: AxiosRequestConfig) => {
   if (url === "/api/cars") {
     return Promise.resolve(generateMockCars());
   }
+  if (url === "/api/cars/41400") {
+    return Promise.resolve(mockCar);
+  }
   return Promise.reject(new Error("Not found"));
 };
 

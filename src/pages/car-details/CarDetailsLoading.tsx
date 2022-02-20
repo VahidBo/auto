@@ -4,7 +4,10 @@ import { Box } from "@mui/system";
 
 export function CarDetailsLoading() {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      data-testid="car-details-page-skeleton"
+    >
       <Box sx={{ backgroundColor: grey["A200"], width: 1, height: 300 }} />
       <Grid container spacing={3} maxWidth={800} mt={3}>
         <Grid item xs>

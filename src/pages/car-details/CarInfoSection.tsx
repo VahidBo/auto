@@ -10,7 +10,7 @@ export interface CarInfoSectionProps {
 export function CarInfoSection({ carDetails }: CarInfoSectionProps) {
   const { manufacturerName, modelName, stockNumber, mileage, fuelType, color } = carDetails;
   return (
-    <Box px={1.5}>
+    <Box px={1.5} data-testid="car-info-section">
       <Typography variant="h4" mb={3}>{`${manufacturerName} ${modelName}`}</Typography>
       <Typography variant="body1" mb={3}>
         {`Stock # ${stockNumber} - `}

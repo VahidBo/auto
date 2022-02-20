@@ -31,7 +31,7 @@ export function AddToFavouriteCard({ stockNumber }: AddToFavouriteCardProps) {
   const buttonText = isFavourite ? "Remove" : "Save";
 
   return (
-    <Box px={1.5}>
+    <Box px={1.5} data-testid="add-to-favourite-cars-card">
       <Card sx={{ width: { xs: 1, sm: 300 } }}>
         <CardContent sx={{ pb: 1 }}>
           <Typography variant="body2" component="label">
